@@ -8,21 +8,8 @@ public class MovieManagerTest {
     Movie item1 = new Movie("movie1");
     Movie item2 = new Movie("movie2");
     Movie item3 = new Movie("movie3");
-    Movie item4 = new Movie("movie2");
-    Movie item5 = new Movie("movie3");
-
-    @Test
-    public void findLastMovies1() {
-        MovieManager repo = new MovieManager(10);
-        repo.save(item1);
-        repo.save(item2);
-        repo.save(item3);
-
-        Movie[] expected = {item3, item2, item1};
-        Movie[] actual = repo.findLast();
-
-        Assertions.assertArrayEquals(expected, actual);
-    }
+    Movie item4 = new Movie("movie4");
+    Movie item5 = new Movie("movie5");
 
     @Test
     public void findAllMovies() {
@@ -39,6 +26,19 @@ public class MovieManagerTest {
     }
 
     @Test
+    public void findLastMovies1() {
+        MovieManager repo = new MovieManager(10);
+        repo.save(item1);
+        repo.save(item2);
+        repo.save(item3);
+
+        Movie[] expected = {item3, item2, item1};
+        Movie[] actual = repo.findLast();
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
     public void findLastMovies2() {
         MovieManager repo = new MovieManager();
         repo.save(item1);
@@ -50,6 +50,30 @@ public class MovieManagerTest {
         repo.findLast();
 
         Movie[] expected = {item5, item4, item3, item2, item1};
+        Movie[] actual = repo.findLast();
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void findLastMovies3() {
+        MovieManager repo = new MovieManager(2);
+        repo.save(item1);
+        repo.save(item2);
+        repo.save(item3);
+
+        Movie[] expected = {item3, item2};
+        Movie[] actual = repo.findLast();
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void findLastMovies4() {
+        MovieManager repo = new MovieManager(10);
+
+
+        Movie[] expected = {};
         Movie[] actual = repo.findLast();
 
         Assertions.assertArrayEquals(expected, actual);
